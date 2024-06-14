@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -49,8 +50,96 @@ public class AstronautaEntidad implements Serializable {
 
     @OneToMany(mappedBy = "AstronautaEntidad", cascade = {CascadeType.PERSIST})
     private List<AstronautaNavesEntidad> naves;
-            ;
+    
+    @OneToOne(mappedBy = "AstronautaEntidad", cascade = {CascadeType.PERSIST})
+    private MuerteEntidad muerte;
+            
     public AstronautaEntidad() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombres() {
+        return nombres;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public String getApellidoPaterno() {
+        return apellidoPaterno;
+    }
+
+    public void setApellidoPaterno(String apellidoPaterno) {
+        this.apellidoPaterno = apellidoPaterno;
+    }
+
+    public String getApellidoMaterno() {
+        return apellidoMaterno;
+    }
+
+    public void setApellidoMaterno(String apellidoMaterno) {
+        this.apellidoMaterno = apellidoMaterno;
+    }
+
+    public String getTipoSangre() {
+        return tipoSangre;
+    }
+
+    public void setTipoSangre(String tipoSangre) {
+        this.tipoSangre = tipoSangre;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public List<AstronautaNavesEntidad> getNaves() {
+        return naves;
+    }
+
+    public void setNaves(List<AstronautaNavesEntidad> naves) {
+        this.naves = naves;
+    }
+
+    public MuerteEntidad getMuerte() {
+        return muerte;
+    }
+
+    public void setMuerte(MuerteEntidad muerte) {
+        this.muerte = muerte;
+    }
+
+    @Override
+    public String toString() {
+        return "AstronautaEntidad{" + "id=" + id + ", nombres=" + nombres + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", tipoSangre=" + tipoSangre + ", pais=" + pais + ", edad=" + edad + ", sexo=" + sexo + ", naves=" + naves + ", muerte=" + muerte + '}';
     }
     
     

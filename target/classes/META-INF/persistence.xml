@@ -5,8 +5,7 @@
     <class>Entidades.AstronautaEntidad</class>
     <class>Entidades.NaveEntidad</class>
     <class>Entidades.AstronautaNavesEntidad</class>
-    <class>Entidades.MuerteEntidad</class>
-    <class>Entidades.VueloEntidad</class>
+    <class>Entidades.MuertesEntidad</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/astronautas?serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

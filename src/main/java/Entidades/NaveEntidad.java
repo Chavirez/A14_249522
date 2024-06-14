@@ -43,6 +43,9 @@ public class NaveEntidad implements Serializable {
     
     @OneToMany(mappedBy = "NaveEntidad", cascade = {CascadeType.PERSIST})
     private List<AstronautaNavesEntidad> tripulacion;  
+   
+    @OneToMany(mappedBy = "AstronautaEntidad", cascade = {CascadeType.PERSIST})
+    private List<VueloEntidad> vuelos;
 
     public NaveEntidad() {
     }
@@ -103,9 +106,21 @@ public class NaveEntidad implements Serializable {
         this.tripulacion = tripulacion;
     }
 
+    public List<VueloEntidad> getVuelos() {
+        return vuelos;
+    }
+
+    public void setVuelos(List<VueloEntidad> vuelos) {
+        this.vuelos = vuelos;
+    }
+
     @Override
     public String toString() {
-        return "NaveEntidad{" + "id=" + id + ", nombre=" + nombre + ", color=" + color + ", pais=" + pais + ", numPasajeros=" + numPasajeros + ", tama\u00f1o=" + tamaño + ", tripulacion=" + tripulacion + '}';
-    }   
+        return "NaveEntidad{" + "id=" + id + ", nombre=" + nombre + ", color=" + color + ", pais=" + pais + ", numPasajeros=" + numPasajeros + ", tama\u00f1o=" + tamaño + ", tripulacion=" + tripulacion + ", vuelos=" + vuelos + '}';
+    }
+    
+    
+
+  
     
 }

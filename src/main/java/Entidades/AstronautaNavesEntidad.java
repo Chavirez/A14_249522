@@ -31,6 +31,32 @@ public class AstronautaNavesEntidad implements Serializable {
     @ManyToOne (cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "idCurso", nullable  = false)
     private NaveEntidad naveEntidad;
-    
+
+    public AstronautaNavesEntidad() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public AstronautaEntidad getAstronautaEntidad() {
+        return astronautaEntidad;
+    }
+
+    public void setAstronautaEntidad(AstronautaEntidad astronautaEntidad) {
+        this.astronautaEntidad = astronautaEntidad;
+    }
+
+    public NaveEntidad getNaveEntidad() {
+        return naveEntidad;
+    }
+
+    public void setNaveEntidad(NaveEntidad naveEntidad) {
+        this.naveEntidad = naveEntidad;
+    } 
     
 }

@@ -4,6 +4,8 @@
 
 package Pruebas;
 
+import Persistencia.AstronautaDAO;
+
 /**
  *
  * @author Administrator
@@ -11,6 +13,10 @@ package Pruebas;
 public class Astronauta_249522 {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        
+        AstronautaDAO a = new AstronautaDAO();
+        
+        a.guardar();
+        
     }
 }

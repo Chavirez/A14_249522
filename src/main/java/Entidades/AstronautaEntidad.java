@@ -48,13 +48,23 @@ public class AstronautaEntidad implements Serializable {
     @Column(name = "sexo", length = 10, nullable = true)
     private String sexo;
 
-    @OneToMany(mappedBy = "AstronautaEntidad", cascade = {CascadeType.PERSIST})
+    @OneToMany(mappedBy = "astronautaEntidad", cascade = {CascadeType.PERSIST})
     private List<AstronautaNavesEntidad> naves;
     
-    @OneToOne(mappedBy = "AstronautaEntidad", cascade = {CascadeType.PERSIST})
+    @OneToOne(mappedBy = "astronauta", cascade = {CascadeType.PERSIST})
     private MuerteEntidad muerte;
             
     public AstronautaEntidad() {
+    }
+
+    public AstronautaEntidad(String nombres, String apellidoPaterno, String apellidoMaterno, String tipoSangre, String pais, int edad, String sexo) {
+        this.nombres = nombres;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.tipoSangre = tipoSangre;
+        this.pais = pais;
+        this.edad = edad;
+        this.sexo = sexo;
     }
 
     public Long getId() {

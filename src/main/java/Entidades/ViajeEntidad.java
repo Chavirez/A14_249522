@@ -5,7 +5,9 @@
 package Entidades;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,29 +17,32 @@ import javax.persistence.ManyToOne;
 
 /**
  *
- * @author Administrator
+ * @author santi
  */
 @Entity
-public class AstronautaNavesEntidad implements Serializable {
+public class ViajeEntidad implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column (name = "idVuelo")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @ManyToOne (cascade = {CascadeType.PERSIST})
-    @JoinColumn(name = "idAstronauta", nullable  = false)
-    private AstronautaEntidad astronautaEntidad;
+    @Column (name = "numPasajeros", length = 5, nullable = false)
+    private int numPasajeros;
+    
+    @Column (name = "fechaViaje", length = 6, nullable = false)
+    private Calendar fechaViaje;
     
     @ManyToOne (cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "idNave", nullable  = false)
     private NaveEntidad naveEntidad;
 
-    public AstronautaNavesEntidad() {
+    public ViajeEntidad() {
     }
 
-    public AstronautaNavesEntidad(AstronautaEntidad astronautaEntidad, NaveEntidad naveEntidad) {
-        this.astronautaEntidad = astronautaEntidad;
-        this.naveEntidad = naveEntidad;
+    public ViajeEntidad(int numPasajeros, Calendar fechaViaje) {
+        this.numPasajeros = numPasajeros;
+        this.fechaViaje = fechaViaje;
     }
 
     public Long getId() {
@@ -48,12 +53,20 @@ public class AstronautaNavesEntidad implements Serializable {
         this.id = id;
     }
 
-    public AstronautaEntidad getAstronautaEntidad() {
-        return astronautaEntidad;
+    public int getNumPasajeros() {
+        return numPasajeros;
     }
 
-    public void setAstronautaEntidad(AstronautaEntidad astronautaEntidad) {
-        this.astronautaEntidad = astronautaEntidad;
+    public void setNumPasajeros(int numPasajeros) {
+        this.numPasajeros = numPasajeros;
+    }
+
+    public Calendar getFechaViaje() {
+        return fechaViaje;
+    }
+
+    public void setFechaViaje(Calendar fechaViaje) {
+        this.fechaViaje = fechaViaje;
     }
 
     public NaveEntidad getNaveEntidad() {
@@ -62,13 +75,11 @@ public class AstronautaNavesEntidad implements Serializable {
 
     public void setNaveEntidad(NaveEntidad naveEntidad) {
         this.naveEntidad = naveEntidad;
-    } 
+    }
 
     @Override
     public String toString() {
-        return "AstronautaNavesEntidad{" + "id=" + id + ", astronautaEntidad=" + astronautaEntidad + ", naveEntidad=" + naveEntidad + '}';
+        return "VueloEntidad{" + "id=" + id + ", numPasajeros=" + numPasajeros + ", fechaViaje=" + fechaViaje + ", naveEntidad=" + naveEntidad + '}';
     }
-
-
     
 }

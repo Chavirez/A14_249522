@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.Calendar;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,7 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 
-
+@Entity
 public class MuerteEntidad implements Serializable {
 
     @Id
@@ -23,15 +24,18 @@ public class MuerteEntidad implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column (name = "fechaRegistro", length = 100, nullable = false)
+    @Column (name = "fechaRegistro", length = 6, nullable = false)
     private Calendar fechaRegistro;
     
-    @OneToOne (cascade = {CascadeType.REMOVE})
-    
-    @JoinColumn(name = "idAstronauta", nullable = false)
-    private AstronautaEntidad alumno;    
+    @OneToOne (cascade = {CascadeType.PERSIST})
+    @JoinColumn(name = "astronauta", nullable =false)
+    private AstronautaEntidad astronauta;    
 
     public MuerteEntidad() {
+    }
+
+    public MuerteEntidad(Calendar fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
     }
 
     public Long getId() {
@@ -51,16 +55,16 @@ public class MuerteEntidad implements Serializable {
     }
 
     public AstronautaEntidad getAlumno() {
-        return alumno;
+        return astronauta;
     }
 
     public void setAlumno(AstronautaEntidad alumno) {
-        this.alumno = alumno;
+        this.astronauta = alumno;
     }
 
     @Override
     public String toString() {
-        return "MuertesEntidad{" + "id=" + id + ", fechaRegistro=" + fechaRegistro + ", alumno=" + alumno + '}';
+        return "MuertesEntidad{" + "id=" + id + ", fechaRegistro=" + fechaRegistro + ", alumno=" + astronauta + '}';
     }
     
 }

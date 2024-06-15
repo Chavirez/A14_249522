@@ -44,10 +44,18 @@ public class NaveEntidad implements Serializable {
     @OneToMany(mappedBy = "NaveEntidad", cascade = {CascadeType.PERSIST})
     private List<AstronautaNavesEntidad> tripulacion;  
    
-    @OneToMany(mappedBy = "AstronautaEntidad", cascade = {CascadeType.PERSIST})
-    private List<VueloEntidad> vuelos;
+    @OneToMany(mappedBy = "NaveEntidad", cascade = {CascadeType.PERSIST})
+    private List<ViajeEntidad> vuelos;
 
     public NaveEntidad() {
+    }
+
+    public NaveEntidad(String nombre, String color, String pais, int numPasajeros, long tamaño) {
+        this.nombre = nombre;
+        this.color = color;
+        this.pais = pais;
+        this.numPasajeros = numPasajeros;
+        this.tamaño = tamaño;
     }
 
     public Long getId() {
@@ -106,11 +114,11 @@ public class NaveEntidad implements Serializable {
         this.tripulacion = tripulacion;
     }
 
-    public List<VueloEntidad> getVuelos() {
+    public List<ViajeEntidad> getVuelos() {
         return vuelos;
     }
 
-    public void setVuelos(List<VueloEntidad> vuelos) {
+    public void setVuelos(List<ViajeEntidad> vuelos) {
         this.vuelos = vuelos;
     }
 

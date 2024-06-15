@@ -18,5 +18,7 @@ public class Astronauta_249522 {
         
         a.guardar();
         
+        a.leer();
+        
     }
 }

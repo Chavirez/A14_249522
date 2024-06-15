@@ -9,8 +9,10 @@ import Entidades.AstronautaNavesEntidad;
 import Entidades.MuerteEntidad;
 import Entidades.NaveEntidad;
 import Entidades.ViajeEntidad;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import javax.persistence.*;
@@ -36,7 +38,7 @@ public class AstronautaDAO {
     
     Calendar va1 = Calendar.getInstance();
     
-    NaveEntidad nave = new NaveEntidad("La Magnum", "Transparente", "Zimbabwe", 54, 100);
+    NaveEntidad nave = new NaveEntidad("Magnum", "Transparente", "Zimbabwe", 54, 100);
     
     ViajeEntidad v1 = new ViajeEntidad(52, va1);
     
@@ -89,6 +91,59 @@ public class AstronautaDAO {
     entityManager.getTransaction().commit();
     entityManager.close();
     managerFactory.close();
+        
+    }
+    
+    public void leer(){
+        
+        EntityManagerFactory managerFactory = Persistence.createEntityManagerFactory("conexionAstronauta");
+ 
+        EntityManager entityManager = managerFactory.createEntityManager();
+
+        String nombreUno = "Romina";
+        String nombreDos = "Santiago";
+        String nombreNave = "Magnum";
+
+        TypedQuery<Object[]> query = entityManager.createQuery(
+            "SELECT a1.nombres, a2.nombres, n.nombre, n.numPasajeros, v.fechaViaje, a2.nombres, m.fechaRegistro " +
+            "FROM AstronautaEntidad a1 " +
+            "JOIN a1.naves ne " +
+            "JOIN ne.naveEntidad n " +
+            "JOIN n.vuelos v " +
+            "JOIN n.tripulacion t " + 
+            "JOIN t.astronautaEntidad a2 " +
+            "JOIN a2.muerte m " +
+            "WHERE v.fechaViaje = m.fechaRegistro AND a1.nombres != a2.nombres", Object[].class);
+
+        List<Object[]> result = query.getResultList();
+        
+
+
+        for (Object[] row : result) {
+            String astronautaUnoNombre = (String) row[0];
+            String astronautaDosNombre = (String) row[1];
+            String naveNombre = (String) row[2];
+            int capacidadPasajeros = (Integer) row[3];
+            Calendar fechaHoraSalida = (Calendar) row[4];
+            Date d1 = fechaHoraSalida.getTime();
+            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            String fechaHoraSalidaD = sdf1.format(d1);            
+            String astronautaMuerteNombre = (String) row[5];
+            Calendar fechaHoraMuerte = (Calendar) row[6];
+            Date d2 = fechaHoraSalida.getTime();
+            SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            String fechaHoraMuerteD = sdf2.format(d2);              
+
+            System.out.println("Los astronautas: " + astronautaUnoNombre + " y " + astronautaDosNombre +
+                " fueron muy valientes debido a que se subieron a la " + naveNombre +
+                " que tiene la capacidad de " + capacidadPasajeros +
+                " pasajeros haciendo un vuelo el " + fechaHoraSalidaD +
+                " y lamentablemente perdió la vida " + astronautaMuerteNombre +
+                " en la fecha de " + fechaHoraMuerteD);
+        }
+
+        entityManager.close();
+        managerFactory.close();     
         
     }
     
